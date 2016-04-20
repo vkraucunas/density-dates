@@ -1,0 +1,21 @@
+@import "bourbon";
+@import "neat";
+@import "bitters/base";
+
+$white: #FCFCFC;
+$light-blue: #5D737E;
+$dark-blue: #02111B;
+
+.container {
+  @include outer-container;
+
+  margin-top: 3rem;
+}
+
+h1 {
+  text-align: center;
+
+  span {
+    color: $light-blue;
+  }
+}
