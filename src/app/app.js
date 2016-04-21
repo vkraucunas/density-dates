@@ -25,6 +25,10 @@ angular.module('myApp', ['ngRoute'])
                 // restricted: false,
                 // preventLoggedIn: true
             })
+            .when('/members/:slug', {
+                // templateUrl: 'templates/single.html',
+                // controller: SingleControl
+            })
             // .when('/logout', {
             //     restricted: false,
             //     preventLoggedIn: false,

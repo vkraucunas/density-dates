@@ -1,5 +1,6 @@
 angular.module('myApp')
-       .controller('MembersCtrl', MembersCtrl);
+       .controller('MembersCtrl', MembersCtrl)
+
 
 function MembersCtrl($scope, $q, membersService) {
     membersService.getAllUsers()
