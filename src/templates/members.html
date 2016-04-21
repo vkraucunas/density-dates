@@ -1,0 +1,8 @@
+<div ng-show="members"
+     class="container">
+    <div class="row"
+         ng-repeat="member in members">
+         <h4>{{member.username}}</h4>
+         <img src="{{member.avatar}}" alt="profile image">
+    </div>
+</div>

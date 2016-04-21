@@ -7,13 +7,20 @@ angular.module('myApp', ['ngRoute'])
                 // preventLoggedIn: false
             })
             .when('/register', {
-                templateUrl: 'app/register/directives/register.html',
+                templateUrl: 'templates/register.html'
                 // controller: "registerController",
                 // restricted: false,
                 // preventLoggedIn: true
             })
             .when('/login', {
-                templateUrl: 'app/login/directives/login.html',
+                templateUrl: 'templates/login.html'
+                // controller: "loginController",
+                // restricted: false,
+                // preventLoggedIn: true
+            })
+            .when('/members', {
+                templateUrl: 'templates/members.html',
+                controller: MembersCtrl
                 // controller: "loginController",
                 // restricted: false,
                 // preventLoggedIn: true
@@ -29,4 +36,5 @@ angular.module('myApp', ['ngRoute'])
             //     }
             // })
             .otherwise({redirectTo: '/'});
-        });
+        })
+
