@@ -1,33 +1,40 @@
-angular.module('myApp', ['ngRoute'])
-       .config(function($routeProvider, $locationProvider, $httpProvider) {
-          $routeProvider
-            .when('/', {
+angular.module('myApp', [ 'ui.router'])
+       .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+          $urlRouterProvider.otherwise("/");
+          $stateProvider
+            .state('home', {
+                url: '/',
                 templateUrl: 'templates/home.html',
                 // restricted: false,
                 // preventLoggedIn: false
             })
-            .when('/register', {
+            .state('register', {
+                url: '/register',
                 templateUrl: 'templates/register.html'
                 // controller: "registerController",
                 // restricted: false,
                 // preventLoggedIn: true
             })
-            .when('/login', {
+            .state('login', {
+                url: '/login',
                 templateUrl: 'templates/login.html'
                 // controller: "loginController",
                 // restricted: false,
                 // preventLoggedIn: true
             })
-            .when('/members', {
+            .state('members', {
+                url: '/members',
                 templateUrl: 'templates/members.html',
                 controller: MembersCtrl
                 // controller: "loginController",
                 // restricted: false,
                 // preventLoggedIn: true
             })
-            .when('/members/:slug', {
-                // templateUrl: 'templates/single.html',
-                // controller: SingleControl
+            .state('members.single', {
+                url: '/members/:slug',
+                templateUrl: 'templates/single.html',
+                controller: SingleCtrl,
+                // scope: {slug: req.params.slug}
             })
             // .when('/logout', {
             //     restricted: false,
@@ -39,6 +46,5 @@ angular.module('myApp', ['ngRoute'])
             //         }
             //     }
             // })
-            .otherwise({redirectTo: '/'});
         })
 
