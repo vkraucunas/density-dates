@@ -28,33 +28,39 @@ angular.module('myApp', [ 'ui.router'])
                 controller: 'MembersCtrl',
                 // controller: "loginController",
                 restricted: true,
-                preventLoggedIn: true
+                preventLoggedIn: false
             })
             .state('members.single', {
                 url: '/{slug}',
                 templateUrl: 'templates/single.html',
-                controller: 'SingleCtrl'
+                controller: 'SingleCtrl',
+                restricted: true,
+                preventLoggedIn: false
             })
             .state('profile', {
                 url: '/profile',
                 templateUrl: 'templates/profile.html',
-                // controller: SingleCtrl
+                // controller: SingleCtrl,
+                restricted: true,
+                preventLoggedIn: false
             })
             // .state('members.search', {
             //     url: '/search',
             //     templateUrl: 'templates/search.html',
             //     controller: SearchCtrl
             // })
-            // .when('/logout', {
-            //     restricted: false,
-            //     preventLoggedIn: false,
-            //     resolve: function(authService, $location) {
-            //         test: {
-            //             authService.logout();
-            //             $location.path('/login');
-            //         }
-            //     }
-            // })
+            .state('logout', {
+                url: '/logout',
+                restricted: false,
+                preventLoggedIn: false,
+                resolve: {
+                    test: function(authService, $rootScope, $location) {
+                        authService.logout();
+                        $rootScope.currentUser = authService.getUserInfo();
+                        $location.path('/login');
+                    }
+                }
+            })
             $httpProvider.interceptors.push('authInterceptor');
         })
         .run(routeChange);

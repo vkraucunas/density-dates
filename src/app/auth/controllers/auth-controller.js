@@ -21,6 +21,24 @@ angular.module('myApp')
             }
         };
         $scope.err = false;
+
+        $scope.luser = {
+                email: '',
+                password: ''
+            };
+        $scope.login = function() {
+            authService.login($scope.luser)
+            .then(function(user) {
+                console.log(user);
+                authService.setUserInfoLogin(user);
+                $location.path('/members');
+                $rootScope.currentUser = authService.getUserInfo();
+            })
+            .catch(function(err) {
+                $scope.err = true;
+                console.log(err);
+            });
+        };
         geoService.getCurrentPosition()
             .then(function(position) {
                 console.log(position.coords);
@@ -74,6 +92,5 @@ angular.module('myApp')
                         $scope.err = true;
                      })
             }
-
         };
     }

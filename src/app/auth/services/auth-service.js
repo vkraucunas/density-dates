@@ -21,7 +21,7 @@
     var user = {};
     return {
       login: function(user) {
-        return $http.post('/auth/login', user);
+        return $http.post('https://galvanize-student-apis.herokuapp.com/gdating/auth/login', user);
       },
       logout: function(user) {
         user = null;
@@ -34,6 +34,12 @@
         $window.localStorage.setItem('user', JSON.stringify(userData.data.data.data.slug));
         $window.localStorage.setItem('lat', JSON.stringify(userData.data.data.data.address.geo.lat));
         $window.localStorage.setItem('lng', JSON.stringify(userData.data.data.data.address.geo.lng));
+        $window.localStorage.setItem('token', JSON.stringify(userData.data.data.token));
+      },
+      setUserInfoLogin: function(userData) {
+        $window.localStorage.setItem('user', JSON.stringify(userData.data.data.user.slug));
+        $window.localStorage.setItem('lat', JSON.stringify(userData.data.data.user.address.geo.lat));
+        $window.localStorage.setItem('lng', JSON.stringify(userData.data.data.user.address.geo.lng));
         $window.localStorage.setItem('token', JSON.stringify(userData.data.data.token));
       },
       getUserInfo: function(userData) {

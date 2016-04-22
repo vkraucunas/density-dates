@@ -1,13 +1,13 @@
 <h1>Login</h1>
 <a ui-sref="register"><p><em>Not a member yet? Register!</em></p></a>
-<form>
+<form ng-submit="login(luser)">
     <fieldset>
-        <input type="text"
-               ng-model="newUser.username"
-               placeholder="Username"
+        <input type="email"
+               ng-model="luser.email"
+               placeholder="Email"
                required>
         <input type="password"
-               ng-model="newUser.password"
+               ng-model="luser.password"
                placeholder="Password"
                required>
         <input type="submit">
