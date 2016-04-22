@@ -2,13 +2,11 @@ angular.module('myApp')
        .controller('SingleCtrl', SingleCtrl)
 
 
-function SingleCtrl($scope, membersService) {
-    membersService.getAllUsers()
-    .then(function(users) {
-        console.log(users.data.data);
-        $scope.members = users.data.data;
+function SingleCtrl($scope, $stateParams, membersService) {
+    membersService.getUserBySlug($stateParams.slug)
+    .then(function(user) {
+
     })
-    $scope.person = getPersonBySlug($scope.slug);
 }
 
-SingleCtrl.$inject = ['$scope', 'membersService'];
+SingleCtrl.$inject = ['$scope', '$stateParams', 'membersService'];

@@ -1,17 +1,22 @@
-<div class="row">
-    <button>All</button>
-    <button>Popular</button>
-    <button>Near Me</button>
-    <button>My Matches</button>
-    <button>Chatting</button>
-</div>
-<div ng-show="members"
-     class="container">
-    <div class="row"
-         ng-repeat="member in members">
-        <a href="/#/members/{{member.slug}}">
-             <h4>{{member.username}}</h4>
-             <img src="{{member.avatar}}" alt="profile image">
-         </a>
+<div class="five columns">
+    <div class="row">
+        <button>All</button>
+        <button>Popular</button>
+        <button>Near Me</button>
+        <button>My Matches</button>
+        <button>Chatting</button>
+        <button>Search</button>
     </div>
+    <div ng-show="members"
+         class="container">
+        <div class="row"
+             ng-repeat="member in members">
+            <a ui-sref=".single({slug: member.slug})">
+                 <h4>{{member.username}}</h4>
+                 <img src="{{member.avatar}}" alt="profile image">
+             </a>
+        </div>
+    </div>
+</div>
+<div class="seven columns" ui-view>
 </div>

@@ -10,8 +10,8 @@ angular.module('myApp', [ 'ui.router'])
             })
             .state('register', {
                 url: '/register',
-                templateUrl: 'templates/register.html'
-                // controller: "registerController",
+                templateUrl: 'templates/register.html',
+                controller: "AuthCtrl",
                 // restricted: false,
                 // preventLoggedIn: true
             })
@@ -31,11 +31,20 @@ angular.module('myApp', [ 'ui.router'])
                 // preventLoggedIn: true
             })
             .state('members.single', {
-                url: '/members/:slug',
+                url: '/{slug}',
                 templateUrl: 'templates/single.html',
-                controller: SingleCtrl,
-                // scope: {slug: req.params.slug}
+                controller: SingleCtrl
             })
+            .state('profile', {
+                url: '/profile',
+                templateUrl: 'templates/profile.html',
+                // controller: SingleCtrl
+            })
+            // .state('members.search', {
+            //     url: '/search',
+            //     templateUrl: 'templates/search.html',
+            //     controller: SearchCtrl
+            // })
             // .when('/logout', {
             //     restricted: false,
             //     preventLoggedIn: false,

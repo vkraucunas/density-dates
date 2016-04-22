@@ -9,6 +9,8 @@ function MembersCtrl($scope, membersService) {
         $scope.members = users.data.data;
     })
 
+
+
 }
 
 MembersCtrl.$inject = ['$scope', 'membersService'];

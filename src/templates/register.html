@@ -1,17 +1,31 @@
 <h1>Register</h1>
-<form>
+<h4 ng-show='err == true' style="color: red;">Something went wrong</h4>
+<form ng-submit="register(user)">
     <fieldset>
         <input type="email"
-               ng-model="newUser.email"
+               ng-model="user.email"
                placeholder="Email"
                required>
         <input type="text"
-               ng-model="newUser.username"
+               ng-model="user.username"
                placeholder="Username"
+               minlength="8"
                required>
         <input type="password"
-               ng-model="newUser.password"
+               ng-model="user.password"
                placeholder="Password"
+               required>
+        <hr>
+        <input type="text"
+               ng-model="user.names.firstName"
+               placeholder="First Name"
+               required>
+        <input type="date"
+               ng-model="user.dob"
+               required>
+        <input type="text"
+               ng-model="user.address.zipcode"
+               placeholder="ZIP"
                required>
         <input type="submit">
     </fieldset>
