@@ -5,7 +5,7 @@ angular.module('myApp')
 function SingleCtrl($scope, $stateParams, membersService) {
     membersService.getUserBySlug($stateParams.slug)
     .then(function(user) {
-
+        $scope.oneUser = user.data.data;
     })
 }
 

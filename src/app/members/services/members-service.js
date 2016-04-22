@@ -4,8 +4,8 @@ angular.module('myApp')
                 getAllUsers: function() {
                     return $http.get('https://galvanize-student-apis.herokuapp.com/gdating/members/?limit=15')
                 },
-                getMemberBySlug: function(id) {
-                    return $http.get('https://galvanize-student-apis.herokuapp.com/gdating/members/'+id)
+                getUserBySlug: function(id) {
+                    return $http.get('https://galvanize-student-apis.herokuapp.com/gdating/members/search/'+id)
                 }
             }
         }])

@@ -40,7 +40,7 @@ angular.module('myApp', [ 'ui.router'])
             .state('profile', {
                 url: '/profile',
                 templateUrl: 'templates/profile.html',
-                // controller: SingleCtrl,
+                controller: SingleCtrl,
                 restricted: true,
                 preventLoggedIn: false
             })
@@ -57,7 +57,7 @@ angular.module('myApp', [ 'ui.router'])
                     test: function(authService, $rootScope, $location) {
                         authService.logout();
                         $rootScope.currentUser = authService.getUserInfo();
-                        $location.path('/login');
+                        $location.path('/');
                     }
                 }
             })
