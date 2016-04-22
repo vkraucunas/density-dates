@@ -50,11 +50,28 @@ angular.module('myApp')
             //otherwise, make an api call to ziplocate.us/api/v1/+$scope.user.address.zip
             //then post to auth endpoint
                 $http({
-                    url: 'https://ziplocate.us/api/v1/'+$scope.user.address.zip,
+                    url: 'http://ziplocate.us/api/v1/'+$scope.user.address.zipcode,
                     method: 'GET'
                 })
                      .then(function(data) {
-
+                        $scope.user.address.geo.lng = data.lng;
+                        $scope.user.address.geo.lat = data.lat;
+                     })
+                     .then(function() {
+                        authService.register($scope.user)
+                            .then(function(user) {
+                                authService.setUserInfo(user);
+                                $location.path('/profile');
+                                $rootScope.currentUser = authService.getUserInfo();
+                            })
+                            .catch(function(err) {
+                                $scope.err = true;
+                                console.log(err);
+                            });
+                     })
+                     .catch(function(err) {
+                        console.log(err);
+                        $scope.err = true;
                      })
             }
 

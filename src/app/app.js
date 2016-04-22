@@ -5,35 +5,35 @@ angular.module('myApp', [ 'ui.router'])
             .state('home', {
                 url: '/',
                 templateUrl: 'templates/home.html',
-                // restricted: false,
-                // preventLoggedIn: false
+                restricted: false,
+                preventLoggedIn: false
             })
             .state('register', {
                 url: '/register',
                 templateUrl: 'templates/register.html',
                 controller: "AuthCtrl",
-                // restricted: false,
-                // preventLoggedIn: true
+                restricted: false,
+                preventLoggedIn: true
             })
             .state('login', {
                 url: '/login',
-                templateUrl: 'templates/login.html'
-                // controller: "loginController",
-                // restricted: false,
-                // preventLoggedIn: true
+                templateUrl: 'templates/login.html',
+                controller: "AuthCtrl",
+                restricted: false,
+                preventLoggedIn: true
             })
             .state('members', {
                 url: '/members',
                 templateUrl: 'templates/members.html',
-                controller: MembersCtrl
+                controller: 'MembersCtrl',
                 // controller: "loginController",
-                // restricted: false,
-                // preventLoggedIn: true
+                restricted: true,
+                preventLoggedIn: true
             })
             .state('members.single', {
                 url: '/{slug}',
                 templateUrl: 'templates/single.html',
-                controller: SingleCtrl
+                controller: 'SingleCtrl'
             })
             .state('profile', {
                 url: '/profile',
@@ -55,5 +55,19 @@ angular.module('myApp', [ 'ui.router'])
             //         }
             //     }
             // })
+            $httpProvider.interceptors.push('authInterceptor');
         })
+        .run(routeChange);
 
+  function routeChange($rootScope, $location, $window, authService) {
+    $rootScope.$on('$stateChangeStart', function(event, next, current) {
+      // if route us restricted and no token is present
+      if(next.restricted && !$window.localStorage.getItem('token')) {
+        $location.path('/login');
+      }
+      // if token and prevent logging in is true
+      if(next.preventLoggedIn && $window.localStorage.getItem('token')) {
+        $location.path('/');
+      }
+    });
+  }
